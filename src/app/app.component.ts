@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { HttpClientModule } from "@angular/common/http";
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { HeaderComponent } from "./components/header/header.component";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{title}}!</h1>
-
+  imports: [RouterOutlet, HttpClientModule, HeaderComponent],
+  template: `<div>
+    <app-header></app-header>
     <router-outlet />
-  `,
+  </div>`,
   styles: [],
 })
-export class AppComponent {
-  title = 'angular-photo-grid';
-}
+export class AppComponent {}
