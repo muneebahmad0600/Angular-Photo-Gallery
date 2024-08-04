@@ -19,7 +19,6 @@ export class MainComponent implements OnInit {
   screenWidth$!: Observable<number>;
 
   constructor(private photoService: PhotoService, private router: Router, private screenSizeService: ScreenSizeService) {
-    console.log("MainComponent constructor");
     this.screenWidth$ = this.screenSizeService.getScreenWidth();
     this.photos$ = this.photoService.getPhotos().pipe(
       shareReplay(1) // Ensure the observable is shared and replayed to avoid multiple calls
@@ -27,10 +26,8 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("MainComponent ngOnInit");
     this.photosColumns$ = this.screenWidth$.pipe(
       switchMap((width) => {
-        console.log("MainComponent ScreenWidth", width);
         return this.photos$.pipe(map((photos) => this.createColumns(photos, this.getNumberOfColumns(width))));
       })
     );
